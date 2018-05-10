@@ -1,0 +1,31 @@
+<import src="./../../wxParse/wxParse.wxml" />
+<view class="article-wrap">
+  <view class='head-box'>
+    <view class='head-title'> {{post.title}} </view>
+    <view class="head-intro">
+      <view class='avatar'>
+        <image class="img" src='{{post.author_avatar_url}}'></image>
+      </view>
+      <view class='head-middle'>
+          <view class='head-middle-top'>
+              <view class="feed-label feed-label-top">{{post.category_name}}</view>
+              <label class='head-author-name'>{{post.author_name}}</label>
+          </view>
+          <view class='head-middle-bottom'>
+             {{post.created_at_human}} ·
+            <label>{{post.visit_count}}</label>
+            次预览
+          </view>
+      </view>
+      <view class='head-right' bindtap='toggleCollectPost' data-id="{{post.id}}">
+        <text class="collect-icon iconfont {{post.uc_id ? 'icon-collect2 active':'icon-collect '}}"></text>
+      </view>
+    </view>
+  </view>
+  <view class='content-box'>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  </view>
+  <view class='comment-box'>
+
+  </view>
+</view>

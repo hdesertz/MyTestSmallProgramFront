@@ -1,0 +1,28 @@
+@import "./static/style/iconfont.wxss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.feed-label {
+  font-size: 24rpx;
+  border-radius: 8rpx;
+  padding: 0 10rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.feed-label-top {
+  background-color: #80bd01;
+  color: #fff;
+}

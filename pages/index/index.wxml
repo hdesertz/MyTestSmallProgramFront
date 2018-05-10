@@ -1,0 +1,62 @@
+<!--index.wxml-->
+<view class="container" >
+  <block wx:if="{{userInfo.hasRegister}}">
+  <scroll-view class="nav-list" scroll-x data-current-index='{{currentIndex}}'>
+    <view class="nav-item {{currentIndex == index? 'active':''}}" wx:for="{{categoryList}}" wx:key="en_name" data-idx="{{index}}" bindtap='switchTab'>
+      {{item.name}}
+    </view>
+  </scroll-view>
+  <swiper current="{{currentIndex}}" bindchange="switchCate" class="post-list" style="width:100%;height:{{systemInfo.windowHeight}}px;">
+    <swiper-item class="swiper-item" wx:for="{{categoryList}}" wx:key="en_name" data-idx="{{index}}">
+      <block wx:if="{{index == currentIndex}}">
+        <navigator class="post-item" url="/pages/post/post?id={{post.id}}" wx:for="{{postList}}" wx:key="id" wx:for-item="post">
+          <view class="title-area">
+            <text class="flag {{(post.display_flag =='精华' || post.display_flag =='置顶')?'label-top':'label-other'}}">{{post.display_flag}}</text>
+            <text class="title">{{post.title}}</text>
+          </view>
+          <view class="misc">
+            <view class="avatar">
+              <image class='avatar-img' src="{{post.avatar_url}}" lazy-load="true"></image>
+            </view>
+            <view class="right">
+              <view class='misc-right-top'>
+                <view class='author'>{{post.author_name}}</view>
+                <view class='view-reply-count'>
+                  <text class='reply-count'>{{post.reply_count}}</text>
+                  <text class="view-count"> / {{post.visit_count}}</text>
+                </view>
+              </view>
+              <view class="misc-right-bottom">
+                <view class='publish-time'>{{post.created_at}}</view>
+                <view class='publish-pass'>{{post.created_at_human}}</view>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </block>
+    </swiper-item>
+  </swiper>
+  </block>
+  <view class='reg-area-wrapper' style='height:{{systemInfo.windowHeight}}px;'>
+  <view  class="reg-area" wx:if='{{!userInfo.hasRegister}}' >
+  <view class='reg-line'>
+    <image src='https://wxablog.shukaiming.com/img/lg.coffee-cup-drink-loader.gif' style='height:200rpx;width:200rpx;'></image>
+  </view>
+  <view class='reg-line'>
+    自豪地使用 WxaBlog
+  </view>
+    <view class='reg-line'>
+      <label class='reg-line-label'>账号：</label>
+      <input class='reg-line-input' name="account" maxlength ="30" placeholder='限数字、小写字母和下划线，5-30个字符' bindinput="inputAccount"></input>
+    </view>
+    <view class='reg-line'>
+      <label class='reg-line-label'>密码：</label>
+      <input class="reg-line-input" password="true"  maxlength ="20" name="password" placeholder="限8-20个字符" bindinput="inputPassword" ></input>
+    </view>
+    <view class='reg-line'>
+          <button open-type="getUserInfo" bindgetuserinfo="register" size='mini' plain='true' type='primary'> 快速注册 </button>
+    </view>
+  </view>
+  </view>
+
+</view>
