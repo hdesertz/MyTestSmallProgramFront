@@ -1,4 +1,4 @@
-const API_PREFIX = "http://192.168.199.235:7001/api/";
+const API_PREFIX = "http://120.78.67.195:8080/api/";
 //const API_PREFIX = "https://wxablog.shukaiming.com/api/";
 module.exports = {
   api:{
